@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HONCHO/USER HOME</title>
+    <link rel="stylesheet" href="{% static 'css/header.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'booststrap/css/bootstrap.min.css'%}">
+    <script src="{% static 'booststrap/js/bootstrap.min.js'%}"></script>
+    <style>
+        h2 {
+            font-size: 3rem;
+        }
+        .card img{
+            width: 100%;
+            height: 240px;
+        }
+        .rate{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin-bottom: 20px;
+
+        }
+        .rate p{
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .intro a {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'user_header.html' %}
+    <section>
+        <div class="section1">
+            <div class="image">
+                <img src="{% static 'images/food 1.png'%}" alt="">
+            </div>
+            <div class="intro">
+                <h1>Hot And Spicy Foods Specialty Of Foods</h1>
+                <p>Lonem ipsum dolor sit amet, consectetur adipisicing all Animi doar di laudantium officia voluptas Aspernatur cupiditate ducimus eligendi mpeminehderit</p>
+                <a href="{% url 'menu' %}">Check out our Menu</a>
+            </div>
+        </div>
+        <div class="section2">
+            {% for i in menu %}
+            {% if forloop.counter <= 3 %}
+            <div class="card">
+                <img src="{{ i.image.url }}" alt="">
+                <div class="card-body">
+                  <h2 class="card-title">{{ i.item_name }}</h2>
+                  <p class="card-text">{{ i.description }}</p>
+                  <div class="rate">
+                      <p class="card-text"><strike>₹ {{ i.old_price }}</strike></p>
+                      <p class="card-text">₹ {{ i.price }}</p>
+                  </div>
+                    {% if user.is_active == 0 %}
+                        <a href="{% url 'user_signup' %}" class="btn btn-primary">Order</a>
+                    {% else %}
+                         <a href="{% url 'order' i.id %}" class="btn btn-primary">Order</a>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+<!--            <div class="card">-->
+<!--                <img src="{% static 'images/caramel-pancakes.jpg'%}" alt="">-->
+<!--                <div class="card-body">-->
+<!--                  <h5 class="card-title">Card title</h5>-->
+<!--                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+<!--                  <a href="#" class="btn btn-primary">Order</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <img src="{% static 'images/lobster-lasagna.jpeg'%}" alt="">-->
+<!--                <div class="card-body">-->
+<!--                  <h5 class="card-title">Card title</h5>-->
+<!--                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+<!--                  <a href="#" class="btn btn-primary">Order</a>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
+    </section>
+    {% include 'footer.html' %}
+</body>
+</html>

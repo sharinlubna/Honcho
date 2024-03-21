@@ -1,0 +1,28 @@
+
+<header>
+    <nav>
+        <div class="navbar">
+            <div class="left">
+                <ul>
+                    <li><a href="#">HONCHO</a></li>
+                </ul>
+
+            </div>
+            <div class="right">
+                <ul id="nav">
+                    <li><a href="{% url 'user_home' %}" class="home">Home</a></li>
+                    <li><a href="{% url 'menu' %}">Menu</a></li>
+                    <li><a href="{% url 'All_Cart_items' %}">Cart</a></li>
+                    <li><a href="{% url 'User_Notification' %}"><span class="glyphicon glyphicon-envelope">
+                        <mark class="big swing">{{ count }}</mark></span></a></li>
+                    <li><a href=""><i class="fas fa-user-circle"></i></a>
+                        <ul>
+                            <li><a href="{% url 'user_profile' %}">My Profile</a></li>
+                            <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

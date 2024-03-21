@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"></span>
+                        <span class="title">HONCHO</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Admin_Dashboard' %}">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Users_ds' %}">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Admin_Notification' %}">
+                        <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                        <span class="title">Notification  ({{ count }})</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'items' %}">
+                        <span class="icon"><ion-icon name="fast-food-outline"></ion-icon></span>
+                        <span class="title">Items</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Order_ds' %}">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">Orders</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>-->
+<!--                        <span class="title">Settings</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>-->
+<!--                        <span class="title">Password</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <div class="user">
+                    <img src="{% static 'images/logo.jpeg'%}" alt="">
+                </div>
+            </div>
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>User Details</h2>
+                        <span><a href="" class="btn">edit</a></span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>id</td>
+                                <td>name</td>
+                                <td>phone number</td>
+                                <td>email</td>
+                                <td>Address</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in user %}
+                            {% for j in address %}
+                            {% if i.id == j.user_id %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.phone_number }}</td>
+                                <td>{{ i.email }}</td>
+                                <td>{{ j.house_no }} {{ j.land_mark }} {{ j.city }}, {{ j.district }}, {{ j.pin_code }}</td>
+
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+
+
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+
+    </script>
+</body>
+</html>

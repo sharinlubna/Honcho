@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HONCHO |USER HOME |ORDER</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/header.css'%}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'booststrap/css/bootstrap.min.css'%}">
+
+    <script src="{% static 'booststrap/js/bootstrap.min.js'%}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet" integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/js/boosted.bundle.min.js" integrity="sha384-+lAXqnipqQpjxMdd/9Hp2GOzB4aIouKEYRZ7AE66h68BDob7UlMLpZY7w7SqrC+M" crossorigin="anonymous"></script>
+
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+        @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar{
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .left{
+            width: 25%;
+            margin-left: 50px;
+        }
+        .navbar .left ul{
+            list-style-type: none;
+        }
+        .left li{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        .left a{
+            text-decoration: none;
+            color:  rgb(62, 62, 37);
+            font-size: 30px;
+        }
+
+        #nav {
+            list-style: none inside;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .right{
+            width: 70%;
+        }
+
+        #nav li {
+            display: block;
+            position: relative;
+            padding: 20px;
+            float: left;
+        }
+
+          #nav li a {
+            display: block;
+            padding: 0;
+            text-decoration: none;
+            width: 130px;
+            /* this is the width of the menu items */
+            line-height: 35px;
+            /* this is the hieght of the menu items */
+            color: #000;
+            /* list item font color */
+          }
+
+          #nav li li a {
+            font-size: 80%;
+          }
+
+
+          /* smaller font size for sub menu items */
+
+          #nav li:hover {
+            background-color: rgb(225, 225, 169);
+          }
+
+
+          /* highlights current hovered list item and the parent list items when hovering over sub menues */
+
+          #nav ul {
+            position: absolute;
+            padding: 0;
+            left: 0;
+            display: none;
+            /* hides sublists */
+            background-color: rgb(225, 225, 169);
+          }
+
+
+          /* hides sub-sublists */
+
+          #nav li:hover ul {
+            display: block;
+            z-index: 99;
+        }
+        #nav ul li:hover{
+            background-color: #181717;
+            /* color: #fff; */
+        }
+
+        #nav ul li:hover a{
+            color: #fff;
+        }
+        .place{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .cardbox{
+             position: relative;
+             width: 70%;
+        }
+        form{
+            width: 28%;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: beige;
+            padding: 30px;
+        }
+        .card h2{
+            font-size: 32px;
+            padding: 10px;
+        }
+        input{
+            margin: 10px;
+            width: 98%;
+            font-size: 18px;
+            padding: 5px;
+        }
+        input[type="text"] {
+            padding: 5px;
+        }
+        input[type=submit], button {
+            padding: 5px 10px;
+            margin: 10px 10px;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        .payment{
+            border-top: 1px solid rgb(84, 83, 83);
+        }
+        .place-order{
+            font-weight: bold;
+            font-size: 22px;
+            text-align: center;
+            padding: 24px 82px;
+            width: 94%;
+            background: rgb(61, 159, 220);
+            border-radius: 5px;
+            border: none;
+            height: 70px;
+            
+        }
+        
+        .place-order:hover{
+            background-color: rgb(169, 126, 126);
+        }
+        .food{
+            position: relative;
+            width: 100%;
+        }
+        .pay{
+            padding: 20px;
+            position: relative;
+            background: beige;
+        }
+        .card .details .image{
+            width: 90%;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .card .details p{
+            padding: 10px;
+        }
+        .card img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card .price h2{
+            font-size: 32px;
+            font-weight: 600 ;
+        }
+        button{
+            display: inline-flex;
+        }
+        
+        footer{
+            background-color: #181717;
+            color:#d0cdcd;
+            margin-top: 100px;
+        }
+        footer .f1{
+            padding: 80px 350px;
+            text-align: center;
+        }
+        footer .f1 h2{
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+        footer .f1 ul{
+            list-style-type: none;
+            display: inline-flex;
+        }
+        footer .f1 li{
+            padding: 20px;
+        }
+        footer .f1 li a{
+            font-size: 24px;
+        }
+        footer .f2{
+            border-top: 1px solid rgb(110, 107, 107);
+            padding: 20px;
+        }
+        footer .f2 p{
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+        footer .f2 p span{
+            float: right;
+        }
+        footer .f2 p span a{
+            color: #d0cdcd;
+            text-decoration: none;
+            padding: 2px 10px;
+        }
+        .quantity-selector-sm {
+            width: 8.5rem;
+        }
+        .address{
+            width: 100%
+        }
+        .new{
+            width: 100%
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'user_header.html' %}
+
+    <section>
+        <div class="place">
+            <div class="cardbox">
+                <div class="card item">
+                    <div class="address">
+                        <h2>Address</h2>
+                        {% if data %}
+                            <div class="existingaddress" id="existing_address" style="display: block;">
+                                {% for i in data %}
+                                    <div class="updated_address">
+                                        <h5>Delivery Address:</h5>
+                                        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+                                        <h6>{{ i.house_no }}, {{ i.land_mark }} <br>{{ i.city }}, {{ i.district }} <br>{{ i.pin_code }}</h6>
+                                        <h6>{{ user.email }}</h6>
+                                        <h6>{{ user.phone_number }}</h6>
+                                         <button class="submit-btn">Use This Address </button>
+                                        <button onclick="address_change()" type="submit">Change Address</button>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                                <div id="update-details" class="update-details" style="display: none;">
+                                    <input type="text" class="input" value="{{ user.first_name }}" name="first_name" required/>
+                                    <br>
+                                    <input type="text" class="input" value="{{ user.last_name }}" name="last_name" required/>
+                                    <br>
+                                    <input type="email" class="input" value="{{ user.email }}" name="email" required/>
+                                    <br>
+                                    <input type="text" class="input" value="{{ user.phone_number }}" name="phone_number" pattern="[7-9]{1}[0-9]{9}" required />
+                                    <br>
+                                    {% for i in data %}
+
+                                    <form action="{% url 'Update_address'  %}" method="post" class="address">
+                                    {% csrf_token %}
+                                    <input type="text" class="input" placeholder="House No." value="{{ i.house_no }}" name="house_no" required/>
+                                    <br>
+                                    <input type="text" class="input" placeholder="Land Mark" value="{{ i.land_mark }}" name="land_mark">
+                                    <br>
+                                    <input type="text" class="input" placeholder="City" value="{{ i.city }}" name="city" required/>
+                                    <br>
+                                    <input type="text" class="input" placeholder="District" value="{{ i.district }}" name="district" required/>
+                                    <br>
+                                    <input type="text" class="input" placeholder="PIN code" value="{{ i.pin_code }}" name="pin_code" pattern="[1-0]{6}" required/>
+                                     {% for j in food_details %}
+                                        <input type="hidden" name="item_id" value="{{ j.id }}">
+                                     {% endfor %}
+                                    <button type="submit">Use This Address </button>
+                                    {% endfor %}
+
+                                    </form>
+                                </div>
+
+                            
+
+                        {% else %}
+                            <div class="form-holder">
+
+                                <input type="text" class="input" value="{{ user.first_name }}" name="first_name" required/>
+                                <br>
+                                <input type="text" class="input" value="{{ user.last_name }}" name="last_name" required/>
+                                <br>
+                                <input type="email" class="input" value="{{ user.email }}" name="email" required/>
+                                <br>
+                                <input type="text" class="input" value="{{ user.phone_number }}" name="phone_number" pattern="[7-9]{1}[0-9]{9}" required />
+                                <br>
+
+                                    {% for i in food_details %}
+                                        <form action="{% url 'Add_Address' i.id %}" method="post" class="new">
+                                        {% csrf_token %}
+                                        <input type="text" class="input" placeholder="House No."  name="house_no" required/>
+                                        <br>
+                                        <input type="text" class="input" placeholder="Land Mark"  name="land_mark">
+                                        <br>
+                                        <input type="text" class="input" placeholder="City"  name="city" required/>
+                                        <br>
+                                        <input type="text" class="input" placeholder="District"  name="district" required/>
+                                        <br>
+                                        <input type="text" class="input" placeholder="PIN code"  name="pin_code" pattern="[1-0]{6}" required/>
+                                        <button class="submit-btn" type="submit">Use This Address </button>
+                                        </form>  
+                                        {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="payment">
+                        <h2>Payment</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <form action="{% url 'Place_order' %}" method="post">
+            {% csrf_token %}
+                <div class="food">
+                    {% for i in food_details %}
+                    <div class="card pay">
+                        <div class="details">
+                            <div class="image">
+                                <img src="{{ i.image.url }}" alt="">
+                            </div>
+                            <div class="item-detail">
+                                <h2>{{ i.item_name }}</h2>
+                                <p>{{ i.description }}</p>
+                                <p>Free Delivery</p>
+                            </div>
+
+
+                            <div class="input-group quantity-selector quantity-selector-sm">
+                                    <input type="hidden" value=" {{ i.id }}" name="item_id">
+                                    <input type="number" id="inputQuantitySelectorSm" class="form-control"
+                                           aria-live="polite" data-bs-step="counter" name="quantity" title="quantity"
+                                           value="1" min="1" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                                    <input type="hidden" name="price" value="{{ i.price }}" id="Price">
+                                    <button type="button" class="btn btn-icon btn-secondary btn-sm"
+                                            aria-describedby="inputQuantitySelectorSm" onclick="Minus()" data-bs-step="down">
+                                      <span class="visually-hidden" >Step down</span>
+                                    </button>
+                                    <button type="button"   class="btn btn-icon btn-secondary btn-sm"
+                                            aria-describedby="inputQuantitySelectorSm" onclick="Add()" data-bs-step="up">
+                                      <span class="visually-hidden" >Step up</span>
+                                    </button>
+                            </div>
+
+                            <div class="price">
+                                <h2 class="price" id="Total_price">Total : ₹{{ i.price }}  </h2>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <button id="mybtn" class="place-order" onclick="myFunction()" >Place Order</button>
+                    
+                </div>
+
+        </form>
+        </div>
+
+                
+
+
+    </section>
+
+    
+    {% include 'footer.html' %}
+
+    <script>
+
+        function Add(){
+             let price = document.getElementById('Price').value;
+             let quantity = document.getElementById('inputQuantitySelectorSm').value;
+
+             total =  price * quantity;
+
+             total = parseFloat(total).toFixed(2)
+
+             document.getElementById('Total_price').innerHTML = "Total : ₹" + total;
+             console.log(price, quantity, total);
+        }
+        function Minus(){
+             let price = document.getElementById('Price').value;
+             let quantity = document.getElementById('inputQuantitySelectorSm').value;
+
+             total =  price * quantity;
+
+             total = parseFloat(total).toFixed(2)
+
+             document.getElementById('Total_price').innerHTML = "Total : ₹" + total;
+        }
+
+        function myFunction() {
+          var x = document.getElementById("mybtn").type = "submit";
+          if (confirm("Do you want to confirm this order!") == true) {
+
+              alert("Order has been confirmed!");
+          } else {
+            document.location.href = "{% url 'menu'  %}"
+            alert("Order has been cancelled!");
+          }
+        }
+        function address_change(){
+            var x = document.getElementById('update-details');
+            var y = document.getElementById('existing_address');
+
+                x.style.display ="block";
+                y.style.display="none";
+
+        }
+    </script>
+
+</body>
+</html>

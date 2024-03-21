@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HONCHO |USER HOME |CART</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/header.css'%}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'booststrap/css/bootstrap.min.css'%}">
+    <script src="{% static 'booststrap/js/bootstrap.min.js'%}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet" integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/js/boosted.bundle.min.js" integrity="sha384-+lAXqnipqQpjxMdd/9Hp2GOzB4aIouKEYRZ7AE66h68BDob7UlMLpZY7w7SqrC+M" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+        @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar{
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .left{
+            width: 25%;
+            margin-left: 50px;
+        }
+        .navbar .left ul{
+            list-style-type: none;
+        }
+        .left li{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        .left a{
+            text-decoration: none;
+            color:  rgb(62, 62, 37);
+            font-size: 30px;
+        }
+
+        #nav {
+            list-style: none inside;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .right{
+            width: 70%;
+        }
+
+        #nav li {
+            display: block;
+            position: relative;
+            padding: 20px;
+            float: left;
+        }
+
+          #nav li a {
+            display: block;
+            padding: 0;
+            text-decoration: none;
+            width: 130px;
+            /* this is the width of the menu items */
+            line-height: 35px;
+            /* this is the hieght of the menu items */
+            color: #000;
+            /* list item font color */
+          }
+
+          #nav li li a {
+            font-size: 80%;
+          }
+
+
+          /* smaller font size for sub menu items */
+
+          #nav li:hover {
+            background-color: rgb(225, 225, 169);
+          }
+
+
+          /* highlights current hovered list item and the parent list items when hovering over sub menues */
+
+          #nav ul {
+            position: absolute;
+            padding: 0;
+            left: 0;
+            display: none;
+            /* hides sublists */
+            background-color: rgb(225, 225, 169);
+          }
+
+
+          /* hides sub-sublists */
+
+          #nav li:hover ul {
+            display: block;
+            z-index: 99;
+
+        }
+        #nav ul li:hover{
+            background-color: #181717;
+            /* color: #fff; */
+        }
+
+        #nav ul li:hover a{
+            color: #fff;
+        }
+        .cardbox{
+            position: relative;
+            width: 100%;
+            padding: 20px;
+        }
+        .cardbox .item{
+            position: relative;
+            background: beige;
+            padding: 30px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px;
+        }
+        .details{
+            display: flex;
+            flex-direction: row;
+            height: 200px;
+            margin-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgb(99, 98, 98);
+        }
+        .card .details .image{
+            width: 20%;
+        }
+        .card img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card .item-detail{
+            width: 63%;
+            margin-left: 30px;
+        }
+        .card h2{
+            font-size: 32px;
+        }
+        .card p{
+            font-size: 18px;
+        }
+        .card .price h2{
+            font-size: 32px;
+            font-weight: 600 ;
+        }
+        h4{
+            margin-top: 20px;
+            text-align: right;
+        }
+        h4 span{
+            font-size: 30px;
+        }
+        .price a{
+            text-decoration: none;
+            background: rgb(61, 134, 207);
+            color: beige;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .price a:hover{
+            background-color: black;
+            color: beige;
+        }
+        .place-order{
+            width: 90%;
+            margin: 0 auto;
+        }
+        .place-order button{
+            text-align: center;
+            padding: 10px 5px;
+            background-color: rgb(61, 134, 207);
+            border-radius: 5px;
+            width:100%;
+            font-size: 30px;
+            font-family:600;
+            border:none;
+        }
+        .place-order button:hover{
+            background-color: black;
+            color: beige;
+        }
+
+
+        footer{
+            background-color: #181717;
+            color:#d0cdcd;
+            margin-top: 100px;
+        }
+        footer .f1{
+            padding: 80px 350px;
+            text-align: center;
+        }
+        footer .f1 h2{
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+        footer .f1 ul{
+            list-style-type: none;
+            display: inline-flex;
+        }
+        footer .f1 li{
+            padding: 20px;
+        }
+        footer .f1 li a{
+            font-size: 24px;
+        }
+        footer .f2{
+            border-top: 1px solid rgb(110, 107, 107);
+            padding: 20px;
+        }
+        footer .f2 p{
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+        footer .f2 p span{
+            float: right;
+        }
+        footer .f2 p span a{
+            color: #d0cdcd;
+            text-decoration: none;
+            padding: 2px 10px;
+        }
+        .number{
+            display:inline-flex;
+        }
+        .minus, .plus{
+                width: 28px;
+                height: 30px;
+                background: #f2f2f2;
+                border-radius: 4px;
+                padding: 4px 6px 8px 5px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+        }
+        input{
+                height: 30px;
+                width: 40px;
+                text-align: center;
+                font-size: 20px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: 12px;
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'user_header.html' %}
+
+    <section>
+            <div class="cardbox">
+                <div class="card item">
+                    <h1>Cart Items</h1>
+                    {% for i in my_cart %}
+                    {% for j in all_food %}
+                    {% if i.item_id == j.id %}
+                    <div class="details">
+                        <div class="image">
+                            <img src="{{ j.image.url }}" alt="">
+                        </div>
+                        <div class="item-detail">
+                            <h2>{{ j.item_name }}</h2>
+                            <h2>₹ {{ j.price }}</h2>
+                            <p>Free Delivery</p>
+                            <div class="number">
+                                <form action="{% url 'update_quantity_minus' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <input type="hidden" value=" {{ j.id }}" name="item_id" >
+                                    <input type="hidden" name="price" value="{{ j.price }}" >
+                                    <input type="hidden" name="quantity" value="{{ i.quantity }}">
+                                    <button class="minus" type="submit">-</button>
+<!--                                    <button type="submit" class="btn btn-icon btn-secondary btn-sm"-->
+<!--                                            aria-describedby="inputQuantitySelectorSm" data-bs-step="down">-->
+<!--                                      <span class="visually-hidden">Step down</span>-->
+<!--                                    </button>-->
+
+
+                                </form>
+                                 <input type="number" value="{{ i.quantity }}" min="1" max="10"/>
+<!--                                 <input type="number" id="inputQuantitySelectorSm" class="form-control"-->
+<!--                                       aria-live="polite" data-bs-step="counter" name="quantity"-->
+<!--                                       title="quantity" value="{{ i.quantity }}" min="1" max="10"-->
+<!--                                       step="1" data-bs-round="0" aria-label="Quantity selector">-->
+
+
+                                <form action="{% url 'update_quantity_plus' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <input type="hidden" value=" {{ j.id }}" name="item_id" >
+                                    <input type="hidden" name="price" value=" {{ j.price }}" >
+                                    <input type="hidden" name="quantity" value="{{ i.quantity }}">
+                                    <button type="submit" class="plus">+</button>
+<!--                                    <button type="submit" class="btn btn-icon btn-secondary btn-sm"-->
+<!--                                            aria-describedby="inputQuantitySelectorSm" data-bs-step="up">-->
+<!--                                      <span class="visually-hidden ">Step up</span>-->
+<!--                                    </button>-->
+
+                                </form>
+
+
+                            </div>
+                        </div>
+
+                        <div class="price">
+                            <h2 id="Total_price" class="price">₹ {{ i.item_total }} </h2>
+                            <a href="/Delete_CartItem/{{ i.id }}">Delete</a>
+                            <a href="{% url 'order' j.id %}">Buy</a>
+
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+<!--                    <div class="details">-->
+<!--                        <div class="image">-->
+<!--                            <img src="/static/images/burger.jpg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="item-detail">-->
+<!--                            <h2>Chicken Patty Burger</h2>-->
+<!--                            <p>Free Delivery</p>-->
+<!--                            <div class="input-group quantity-selector quantity-selector-sm">-->
+<!--                                <input type="number" id="inputQuantitySelectorSm" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="1" min="1" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">-->
+<!--                                <button type="button" class="btn btn-icon btn-secondary btn-sm" aria-describedby="inputQuantitySelectorSm" data-bs-step="down">-->
+<!--                                  <span class="visually-hidden">Step down</span>-->
+<!--                                </button>-->
+<!--                                <button type="button" class="btn btn-icon btn-secondary btn-sm" aria-describedby="inputQuantitySelectorSm" data-bs-step="up">-->
+<!--                                  <span class="visually-hidden">Step up</span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="price">-->
+<!--                            <h2 class="price">Rs. 120 </h2>-->
+<!--                            <a href="#">Delete</a>-->
+<!--                            <a href="#">Buy</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="details">-->
+<!--                        <div class="image">-->
+<!--                            <img src="/static/images/burger.jpg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="item-detail">-->
+<!--                            <h2>Chicken Patty Burger</h2>-->
+<!--                            <p>Free Delivery</p>-->
+<!--                            <div class="input-group quantity-selector quantity-selector-sm">-->
+<!--                                <input type="number" id="inputQuantitySelectorSm" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="1" min="1" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">-->
+<!--                                <button type="button" class="btn btn-icon btn-secondary btn-sm" aria-describedby="inputQuantitySelectorSm" data-bs-step="down">-->
+<!--                                  <span class="visually-hidden">Step down</span>-->
+<!--                                </button>-->
+<!--                                <button type="button" class="btn btn-icon btn-secondary btn-sm" aria-describedby="inputQuantitySelectorSm" data-bs-step="up">-->
+<!--                                  <span class="visually-hidden">Step up</span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="price">-->
+<!--                            <h2 class="price">Rs. 120 </h2>-->
+<!--                            <a href="#">Delete</a>-->
+<!--                            <a href="#">Buy</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <h4>Subtotal ({{ item_count }} items):Rs. <span>{{ grand_total }}</span></h4>
+                </div>
+                
+            </div>
+            <div class="place-order">
+                <a href="{% url 'Order_all_item' %}"><button>Proceed to buy ({{ item_count }} items)</button></a>
+
+            </div>
+            </form>
+
+                
+
+
+
+    </section>
+
+<!--        <script>-->
+<!--        function Add(){-->
+<!--             let price = document.getElementById('Price').value;-->
+<!--             let quantity = document.getElementById('inputQuantitySelectorSm').value;-->
+
+<!--             total =  price * quantity;-->
+
+<!--             total = parseFloat(total).toFixed(2)-->
+
+<!--             document.getElementById('Total_price').innerHTML = total;-->
+<!--             console.log(price, quantity, total);-->
+
+<!--             var pid = document.getElementById('p_id').value;-->
+
+<!--            "-->
+<!--        }-->
+<!--        function Minus(){-->
+<!--             let price = document.getElementById('Price').value;-->
+<!--             let quantity = document.getElementById('inputQuantitySelectorSm').value;-->
+
+<!--             total =  price * quantity;-->
+
+<!--             total = parseFloat(total).toFixed(2)-->
+
+<!--             document.getElementById('Total_price').innerHTML = total;-->
+
+
+<!--        }-->
+<!--    </script>-->
+
+    
+    {% include 'footer.html' %}
+
+</body>
+</html>

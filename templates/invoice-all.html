@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            margin-top:20px;
+            background:#eee;
+        }
+
+        .invoice {
+            padding: 30px;
+        }
+        .col-xs-12 {
+            display: inline-flex;
+            justify-content: space-between !important;
+        }
+        .invoice h2 {
+            margin-top: 0px;
+            line-height: 0.8em;
+        }
+
+        .invoice .small {
+            font-weight: 300;
+        }
+
+        .invoice hr {
+            margin-top: 10px;
+            border-color: #ddd;
+        }
+
+        .invoice .table tr.line {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .invoice .table td {
+            border: none;
+        }
+
+        .invoice .identity {
+            margin-top: 10px;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        .invoice .identity strong {
+            font-weight: 600;
+        }
+
+
+        .grid {
+            position: relative;
+            width: 100%;
+            background: #fff;
+            color: #666666;
+            border-radius: 2px;
+            margin-bottom: 25px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+                            <!-- BEGIN INVOICE -->
+                            <div class="col-xs-12">
+                                <div class="grid invoice">
+                                    <div class="grid-body">
+                                        <div class="invoice-title">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <img src="/static/images/logo.jpeg" alt="" height="35">
+                                                    <button><a href="{% url 'user_home' %}">X</a></button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <h2>invoice<br>
+
+                                                        <span class="small">order #{{ oid }}</span></h2>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <address>
+                                                    <strong>Billed From:</strong><br>
+                                                    Honcho,<br>
+                                                    NH 66, Opposite Old Malabar Gold,<br>
+                                                    New Bus Stand, Kasaragod,<br>
+                                                    <abbr title="Phone">P:</abbr> 8714166607
+                                                </address>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <address>
+                                                    {% for i in address %}
+                                                    <strong>Shipped To:</strong><br>
+                                                    {{ user.name }},<br>
+                                                    {{ i.house_no }},<br>
+                                                    {{ i.land_mark }}, {{ i.city}}<br>
+                                                    <abbr title="Phone">P:</abbr> {{ user.phone_number }}
+                                                    {% endfor %}
+                                                </address>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <address>
+                                                    <strong>Payment Method:</strong><br>
+                                                    Visa ending **** 1234<br>
+                                                    h.elaine@gmail.com<br>
+                                                </address>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <address>
+                                                    <strong>Order Date:</strong><br>
+                                                    {{ x }}
+                                                </address>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3>ORDER SUMMARY</h3>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr class="line">
+                                                            <td><strong>#</strong></td>
+                                                            <td class="text-center"><strong>ITEM</strong></td>
+                                                            <td class="text-center"><strong>QNT</strong></td>
+                                                            <td class="text-right"><strong>RATE</strong></td>
+                                                            <td class="text-right"><strong>SUBTOTAL</strong></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+
+
+                                                            {% for i in my_order %}
+                                                             {% with forloop.counter as sl_no %}
+                                                            {% for j in food_details %}
+                                                                {% if j.id == i.item_id %}
+                                                            <tr>
+                                                            <td>{{ sl_no }} </td>
+
+                                                            <td><strong>{{ j.item_name }}</strong><br>{{ j.description}} </td>
+                                                            <td class="text-center">{{ i.quantity }}</td>
+                                                            <td class="text-center">{{ j.price }}</td>
+                                                            <td class="text-right">{{ i.total_price }}</td>
+                                                                </tr>
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                            {% endwith %}
+                                                            {% endfor %}
+
+<!--                                                        <tr>-->
+<!--                                                            <td>2</td>-->
+<!--                                                            <td><strong>Chicken Patty Burger</strong><br>A medium-quality chicken patty would contain 20% chicken skin, 15% iced water, 30% chicken thigh meat, 30% chicken breast meat as well as around 2–3% soy protein and 2% starch.</td>-->
+<!--                                                            <td class="text-center">15</td>-->
+<!--                                                            <td class="text-center">$75</td>-->
+<!--                                                            <td class="text-right">$1,125.00</td>-->
+<!--                                                        </tr>-->
+<!--                                                        <tr class="line">-->
+<!--                                                            <td>3</td>-->
+<!--                                                            <td><strong>Caramel Pancakes</strong><br>Banana, egg, sugar, vegetable oil, vanilla essence.</td>-->
+<!--                                                            <td class="text-center">2</td>-->
+<!--                                                            <td class="text-center">$75</td>-->
+<!--                                                            <td class="text-right">$150.00</td>-->
+<!--                                                        </tr>-->
+                                                        <tr>
+                                                            <td colspan="3"></td>
+                                                            <td class="text-right"><strong>Taxes</strong></td>
+                                                            <td class="text-right"><strong>N/A</strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                            </td><td class="text-right"><strong>Total</strong></td>
+                                                            <td class="text-right"><strong>{{ grand_total }}</strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-right identity">
+                                                <p>Designer identity<br><strong>Lubina Sharin</strong></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END INVOICE -->
+                        </div>
+        </div>
+
+
+<script>
+
+</script>
+</body>
+</html>

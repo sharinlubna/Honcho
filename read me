@@ -1,0 +1,28 @@
+
+BASIC CRUD
+
+> creation
+    django-admin startproject BASIC_CRUD .
+
+> runserver
+    py manage.py runserver
+
+> app creation
+    py manage.py startapp stack_app
+
+>migration
+    py manage.py makemigrations (to make changes in table like adding and dropping)
+    py manage.py migrate (to check table)
+    py manage.py runserver
+
+>superuser creation
+    py manage.py createsuperuser
+
+admin
+
+email : admin@gmai.com
+username : admin123
+pswd : food123
+
+
+

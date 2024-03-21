@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"></span>
+                        <span class="title">HONCHO</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Admin_Dashboard' %}">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Users_ds' %}">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Admin_Notification' %}">
+                        <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                        <span class="title">Notification  ({{ n_count }})</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'items' %}">
+                        <span class="icon"><ion-icon name="fast-food-outline"></ion-icon></span>
+                        <span class="title">Items</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Order_ds' %}">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">Orders</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>-->
+<!--                        <span class="title">Settings</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>-->
+<!--                        <span class="title">Password</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <div class="user">
+                    <img src="{% static 'images/logo.jpeg'%}" alt="">
+                </div>
+            </div>
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ count }}</div>
+                        <div class="cardName">Orders</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="logo-dropbox"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ dcount }}</div>
+                        <div class="cardName">Delivered</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="bicycle-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">284</div>
+                        <div class="cardName">Reviews</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ total }}</div>
+                        <div class="cardName">earnings</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Orders</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Item</td>
+                                <td>Price</td>
+                                <td>Payment</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in recent %}
+                        {% with forloop.counter as outer_counter %}
+                        {% for j in user_details %}
+                        {% for k in item %}
+                            {% if j.id == i.user_id%}
+                            {% if k.id == i.item_id %}
+                            <tr>
+                                <td>{{ k.item_name }}</td>
+                                <td>{{ i.total_price }}</td>
+                                <td>Paid</td>
+                                {% if i.status == 1 %}
+                                <td><span class="status ordered">Ordered</span></td>
+                                {% elif i.status == 2 %}
+                                <td><span class="status pending">Pending</span></td>
+                                {% elif i.status == 3 %}
+                                <td><span class="status delivered">Delivered</span></td>
+                                {% else %}
+                                <td><span class="status cancelled">Cancelled</span></td>
+                                {% endif %}
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                        {% endwith %}
+                        {% endfor %}
+<!--                            <tr>-->
+<!--                                <td>Pizza</td>-->
+<!--                                <td>$120</td>-->
+<!--                                <td>Paid</td>-->
+<!--                                <td><span class="status pending">Pending</span></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>Chicken Roll</td>-->
+<!--                                <td>$20</td>-->
+<!--                                <td>Paid</td>-->
+<!--                                <td><span class="status delivered">Delivered</span></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>Burger</td>-->
+<!--                                <td>$50</td>-->
+<!--                                <td>Paid</td>-->
+<!--                                <td><span class="status delivered">Delivered</span></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>Chicken Roll</td>-->
+<!--                                <td>$20</td>-->
+<!--                                <td>Paid</td>-->
+<!--                                <td><span class="status cancelled">Cancelled</span></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>Fries</td>-->
+<!--                                <td>$120</td>-->
+<!--                                <td>Paid</td>-->
+<!--                                <td><span class="status pending">Pending</span></td>-->
+<!--                            </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+
+
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HONCHO | Items</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css'%}">
+    <style>
+/*        .main a{*/
+/*            justify-self: center;*/
+/*            text-decoration: none;*/
+/*            justify-content: center;*/
+/*            margin: 0 auto;*/
+/*        }*/
+        .cardbox{
+             position: relative;
+             width: 100%;
+             padding: 20px;
+             display: grid;
+             grid-template-columns: repeat(3,1fr);
+             grid-gap: 30px;
+        }
+        .cardbox .item{
+            position: relative;
+            background: beige;
+            padding: 30px;
+            border-radius: 20;
+/*            display: flex;*/
+/*            justify-content: space-between;*/
+            cursor: pointer;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+        }
+        .card img{
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        .card .detail{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .add{
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+        }
+        .add a{
+            text-decoration: none;
+            color:beige;
+            background: rgb(3, 102, 216);
+            padding:10px;
+            border-radius: 5px;
+        }
+        .add a:hover{
+            color: beige;
+            background: black;
+        }
+        .update{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .update a{
+            margin-top: 10px;
+            text-decoration: none;
+            padding: 5px;
+            background-color: rgb(3, 102, 216);
+            color: beige;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+        .update a:hover{
+            background-color: black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"></span>
+                        <span class="title">HONCHO</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Admin_Dashboard' %}">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Users_ds' %}">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Admin_Notification' %}">
+                        <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                        <span class="title">Notification  ({{ count }})</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'items' %}">
+                        <span class="icon"><ion-icon name="fast-food-outline"></ion-icon></span>
+                        <span class="title">Items</span>
+                    </a>
+                </li>
+                 <li>
+                    <a href="{% url 'Order_ds' %}">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">Orders</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>-->
+<!--                        <span class="title">Settings</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>-->
+<!--                        <span class="title">Password</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <div class="user">
+                    <img src="{% static 'images/logo.jpeg'%}" alt="">
+                </div>
+            </div>
+            <div class="cardbox">
+
+<!--                jinja comment {#  ...   #}-->
+                {# {% for i in burger %} #}
+
+                {% for i in items %}
+                <div class="card item">
+                    <div class="image">
+                        <img src="{{ i.image.url }}" alt="">
+                    </div>
+                    <div class="detail">
+                        <h3>{{ i.item_name }}</h3>
+                        <h2>₹ {{ i.price }}</h2>
+                    </div>
+                    <div class="update">
+                        <a href="/edit_item/{{ i.id }}">Edit</a>
+                        <a href="/delete_item/{{ i.id }}">Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+<!--                <div class="card item">-->
+<!--                    <div class="image">-->
+<!--                        <img src="{% static 'images/caramel-pancakes.jpg'%}" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="detail">-->
+<!--                        <h3>item name</h3>-->
+<!--                        <h2>price</h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card item">-->
+<!--                    <div class="image">-->
+<!--                        <img src="{% static 'images/lobster-lasagna.jpeg'%}" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="detail">-->
+<!--                        <h3>item name</h3>-->
+<!--                        <h2>price</h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <div class="add">
+                <a href="{% url 'add_item' %}">Add Items</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+
+
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+
+    </script>
+
+</body>
+</html>

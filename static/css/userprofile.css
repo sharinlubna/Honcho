@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+section{
+    padding: 50px 100px;
+    justify-content: center;
+    
+}
+.details{
+    text-align: center;
+}
+.details .user-profile img{
+    width: 100px;
+    height: 100px;
+}
+.details p{
+    margin-bottom: 20px;
+}
+
+.options {
+    text-align: center;
+}
+.options .col-md-3 h2{
+    margin-top: 10px;
+}
+.options .col-md-3 {
+    background-color: burlywood;
+    color: black;
+    width: 30% !important;
+    margin: 0 10px 0 10px;
+    
+}
+.options .col-md-3:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.options .col-md-3 button{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(142, 185, 222);
+    font-weight: 500;
+}
+.options .col-md-3 button:hover{
+    background-color: rgb(166, 119, 190);;
+}
